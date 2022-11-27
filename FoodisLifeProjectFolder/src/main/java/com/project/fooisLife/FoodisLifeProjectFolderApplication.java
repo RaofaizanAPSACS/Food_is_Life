@@ -23,5 +23,4 @@ public class FoodisLifeProjectFolderApplication implements CommandLineRunner{
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		jdbcTemplate.execute(sqlQuery);
 	}
-
 }

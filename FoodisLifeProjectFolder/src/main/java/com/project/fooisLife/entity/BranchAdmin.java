@@ -1,7 +1,9 @@
 package com.project.fooisLife.entity;
 
+import lombok.Data;
+
+@Data
 public class BranchAdmin {
-	private int id;
 	private String username;
 	private String password;
 	private String phone;
@@ -10,19 +12,12 @@ public class BranchAdmin {
 	public BranchAdmin() {
 		super();
 	}
-	public BranchAdmin(int id, String username, String password, String phone, String email) {
+	public BranchAdmin(String username, String password, String phone, String email) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.phone = phone;
 		this.email = email;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	public String getUsername() {
 		return username;

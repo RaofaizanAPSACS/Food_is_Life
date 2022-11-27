@@ -1,31 +1,39 @@
 package com.project.fooisLife.entity;
 
+import lombok.Data;
+
+@Data
 public class Branch {
-	private int id;
+	
+	private String restaurantName;
+	private int bid;
 	private String address;
 	private String city;
 	private String state;
 	private String phone;
 	private String email;
+	private String openHours;
 	
 	public Branch() {
 		super();
-		this.id = 1;
+		this.bid = 1;
 	}
-	public Branch(int id, String address, String city, String state, String phone, String email) {
+	public Branch(String resName, int bid, String address, String city, String state, String phone, String email, String hours) {
 		super();
-		this.id = id;
+		this.restaurantName = resName;
+		this.bid = bid;
 		this.address = address;
 		this.city = city;
 		this.state = state;
 		this.phone = phone;
 		this.email = email;
+		this.openHours = hours;
 	}
 	public int getId() {
-		return id;
+		return bid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int bid) {
+		this.bid = bid;
 	}
 	public String getAddress() {
 		return address;
@@ -58,10 +66,22 @@ public class Branch {
 		this.email = email;
 	}
 	
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
+	}
+	public String getOpenHours() {
+		return openHours;
+	}
+	public void setOpenHours(String openHours) {
+		this.openHours = openHours;
+	}
 	@Override
 	public String toString() {
-		return "Branch [id=" + id + ", address=" + address + ", city=" + city + ", state=" + state + ", phone=" + phone
-				+ ", email=" + email + "]";
+		return "Branch [restaurantName=" + restaurantName + ", bid=" + bid + ", address=" + address + ", city=" + city
+				+ ", state=" + state + ", phone=" + phone + ", email=" + email + ", openHours=" + openHours + "]";
 	}
 	
 	
