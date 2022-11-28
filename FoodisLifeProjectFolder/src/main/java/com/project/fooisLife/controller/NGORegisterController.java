@@ -1,23 +1,23 @@
 package com.project.fooisLife.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.fooisLife.entity.NGO;
-import com.project.fooisLife.service.StoreRegisterService;
+import com.project.fooisLife.service.NgoRegisterService;
 
 @RestController
 public class NGORegisterController {
 	@Autowired
-	private StoreRegisterService storeRegisterService;
+	private NgoRegisterService ngoRegisterService;
 	
-	@GetMapping("/NgoRegistration")
+	@PostMapping("/NgoRegistration")
 	public String registerNGO(@RequestBody NGO ngo) {
 		
-		return null;
+		ngoRegisterService.registerNgoService(ngo.getAdmin(), ngo.getName(), ngo.getAddress(), ngo.getCity(), ngo.getState(),
+				ngo.getPhone(), ngo.getEmail(), ngo.getOpenHours());
+		return "Registered Successfully";
 	}
-	
-	
 }

@@ -13,7 +13,7 @@ public class StoreRegisterServiceImp implements StoreRegisterService{
 	private StoreRegisterRepository storeRegisterRepository; 
 	@Override
 	public void registerStoreService(Branch branch, Admin admin) {
-		storeRegisterRepository.registerStoreInfo(branch.getId(), branch.getRestaurantName(), branch.getAddress(),
+		storeRegisterRepository.registerStoreInfo(branch.getBid(), branch.getName(), branch.getAddress(),
 				branch.getCity(), branch.getEmail(), branch.getOpenHours(), branch.getPhone(), branch.getState(),
 				admin.getUsername(), admin.getPassword(), admin.getEmail(), admin.getPhone());
 	}
