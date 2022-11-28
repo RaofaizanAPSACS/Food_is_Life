@@ -1,9 +1,9 @@
 package com.project.fooisLife.service;
 
 import com.project.fooisLife.entity.Branch;
-import com.project.fooisLife.entity.BranchAdmin;
+import com.project.fooisLife.entity.Admin;
 
 public interface StoreRegisterService {
 	
-	public void registerStoreService(Branch branch, BranchAdmin admin);
+	public void registerStoreService(Branch branch, Admin admin);
 }

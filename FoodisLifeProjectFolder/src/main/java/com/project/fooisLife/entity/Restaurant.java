@@ -1,18 +1,16 @@
 package com.project.fooisLife.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import lombok.Data;
 
 @Data
 public class Restaurant {
 	private Branch branch;
-	private BranchAdmin admin;
+	private Admin admin;
 	public Restaurant() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Restaurant(Branch branch, BranchAdmin admin) {
+	public Restaurant(Branch branch, Admin admin) {
 		super();
 		this.branch = branch;
 		this.admin = admin;
@@ -23,10 +21,10 @@ public class Restaurant {
 	public void setBranch(Branch branch) {
 		this.branch = branch;
 	}
-	public BranchAdmin getAdmin() {
+	public Admin getAdmin() {
 		return admin;
 	}
-	public void setAdmin(BranchAdmin admin) {
+	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
 	

@@ -3,16 +3,16 @@ package com.project.fooisLife.entity;
 import lombok.Data;
 
 @Data
-public class BranchAdmin {
+public class Admin {
 	private String username;
 	private String password;
 	private String phone;
 	private String email;
 	
-	public BranchAdmin() {
+	public Admin() {
 		super();
 	}
-	public BranchAdmin(String username, String password, String phone, String email) {
+	public Admin(String username, String password, String phone, String email) {
 		super();
 		this.username = username;
 		this.password = password;
