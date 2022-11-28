@@ -1,4 +1,4 @@
-package com.project.fooisLife.service;
+package com.project.fooisLife.service.login;
 
 import com.project.fooisLife.entity.Login;
 

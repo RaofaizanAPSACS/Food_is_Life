@@ -1,11 +1,11 @@
-package com.project.fooisLife.service;
+package com.project.fooisLife.service.register;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.fooisLife.entity.Branch;
 import com.project.fooisLife.entity.Admin;
-import com.project.fooisLife.repository.StoreRegisterRepository;
+import com.project.fooisLife.repository.register.StoreRegisterRepository;
 
 @Service
 public class StoreRegisterServiceImp implements StoreRegisterService{

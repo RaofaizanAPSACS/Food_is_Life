@@ -1,4 +1,4 @@
-package com.project.fooisLife.service;
+package com.project.fooisLife.service.register;
 
 import com.project.fooisLife.entity.Branch;
 import com.project.fooisLife.entity.Admin;

@@ -1,4 +1,4 @@
-package com.project.fooisLife.service;
+package com.project.fooisLife.service.login;
 
 import java.sql.SQLException;
 
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.fooisLife.entity.Login;
-import com.project.fooisLife.repository.LoginRepository;
+import com.project.fooisLife.repository.login.LoginRepository;
 
 @Service
 public class LoginServiceImp implements LoginService{

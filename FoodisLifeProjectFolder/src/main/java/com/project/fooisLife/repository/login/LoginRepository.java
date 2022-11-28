@@ -1,4 +1,4 @@
-package com.project.fooisLife.repository;
+package com.project.fooisLife.repository.login;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;

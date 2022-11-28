@@ -1,4 +1,4 @@
-package com.project.fooisLife.repository;
+package com.project.fooisLife.repository.register;
 
 import javax.sql.DataSource;
 

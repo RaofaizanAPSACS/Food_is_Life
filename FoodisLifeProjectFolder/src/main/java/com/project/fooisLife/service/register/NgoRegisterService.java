@@ -1,10 +1,10 @@
-package com.project.fooisLife.service;
+package com.project.fooisLife.service.register;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.fooisLife.entity.Admin;
-import com.project.fooisLife.repository.NgoRegisterRepository;
+import com.project.fooisLife.repository.register.NgoRegisterRepository;
 
 @Service
 public class NgoRegisterService {
