@@ -17,8 +17,7 @@ public class LoginRepository {
 	
 	@Autowired
 	private DataSource dataSource;
-	
-	@Autowired 
+	 
 	private CallableStatement callableStatement;
 	
 	
@@ -29,6 +28,7 @@ public class LoginRepository {
 		callableStatement.setString(2, login.getPassword());
 		callableStatement.registerOutParameter(3, Types.INTEGER);
 		callableStatement.executeUpdate();
+		System.out.println("Result : "+callableStatement.getInt(3));
 		
 		if(callableStatement.getInt(3) == 1)
 			return true;
