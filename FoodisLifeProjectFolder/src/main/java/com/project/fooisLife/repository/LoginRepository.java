@@ -21,29 +21,30 @@ public class LoginRepository {
 	@Autowired 
 	private CallableStatement callableStatement;
 	
-	private Login login;
 	
-	public Login fetchNGOLoginDetails() throws SQLException {
+	public Boolean fetchNGOLoginDetails(Login login) throws SQLException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call fetchNGOLogin(?, ?)}");
-		callableStatement.registerOutParameter(1, Types.VARCHAR);
-		callableStatement.registerOutParameter(2, Types.VARCHAR);
+		callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call fetchNGOLogin(?, ?, ?)}");
+		callableStatement.setString(1, login.getUsername());
+		callableStatement.setString(2, login.getPassword());
+		callableStatement.registerOutParameter(3, Types.INTEGER);
 		callableStatement.executeUpdate();
 		
-		login.setUsername(callableStatement.getString(1));
-		login.setPassword(callableStatement.getString(2));
-		return login;
+		if(callableStatement.getInt(3) == 1)
+			return true;
+		return false;
 	}
 
-	public Login fetchStoreLoginDetails() throws SQLException {
+	public Boolean fetchStoreLoginDetails(Login login) throws SQLException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call fetchStoreLogin(?, ?)}");
-		callableStatement.registerOutParameter(1, Types.VARCHAR);
-		callableStatement.registerOutParameter(2, Types.VARCHAR);
+		callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call fetchStoreLogin(?, ?, ?)}");
+		callableStatement.setString(1, login.getUsername());
+		callableStatement.setString(2, login.getPassword());
+		callableStatement.registerOutParameter(3, Types.INTEGER);
 		callableStatement.executeUpdate();
 		
-		login.setUsername(callableStatement.getString(1));
-		login.setPassword(callableStatement.getString(2));
-		return login;
+		if(callableStatement.getInt(3) == 1)
+			return true;
+		return false;
 	}
 }

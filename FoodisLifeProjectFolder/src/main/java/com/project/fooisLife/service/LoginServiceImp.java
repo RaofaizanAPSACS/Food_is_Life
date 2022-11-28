@@ -13,36 +13,23 @@ public class LoginServiceImp implements LoginService{
 	@Autowired
 	private LoginRepository loginRepository;
 	
-	private Login fetchedCredentials;
-	
 	public boolean signInNGO(Login login) {
-		
 		try {
-			fetchedCredentials = loginRepository.fetchNGOLoginDetails();
+			return loginRepository.fetchNGOLoginDetails(login);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if( (fetchedCredentials.getUsername().equals(login.getUsername())) &&
-				(fetchedCredentials.getPassword().equals(login.getPassword()) ) )
-			return true;
-		
 		return false;
-		
 	}
 	
 	public boolean signInStore(Login login) {
-		
 		try {
-			fetchedCredentials = loginRepository.fetchStoreLoginDetails();
+			return loginRepository.fetchStoreLoginDetails(login);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if( (fetchedCredentials.getUsername().equals(login.getUsername())) &&
-				(fetchedCredentials.getPassword().equals(login.getPassword()) ) )
-			return true;
-		
 		return false;
 	}
 }
