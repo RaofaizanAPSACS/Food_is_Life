@@ -3,9 +3,9 @@ package com.project.fooisLife.entity;
 import lombok.Data;
 
 @Data
-public class Branch extends Organization{
+public class Branch extends Organization {
 	private int bid;
-	
+
 	public Branch() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -30,6 +30,5 @@ public class Branch extends Organization{
 	public void setBid(int bid) {
 		this.bid = bid;
 	}
-	
-	
+
 }

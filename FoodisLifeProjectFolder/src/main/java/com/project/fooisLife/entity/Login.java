@@ -3,22 +3,19 @@ package com.project.fooisLife.entity;
 import lombok.Data;
 
 @Data
-public class Admin {
+public class Login {
 	private String username;
 	private String password;
-	private String phone;
-	private String email;
 
-	public Admin() {
+	public Login() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(String username, String password, String phone, String email) {
+	public Login(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.phone = phone;
-		this.email = email;
 	}
 
 	public String getUsername() {
@@ -35,22 +32,6 @@ public class Admin {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 }

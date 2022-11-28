@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class NGO extends Organization {
-	
+
 	private Admin admin;
 
 	public NGO() {
@@ -29,5 +29,5 @@ public class NGO extends Organization {
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
-	
+
 }
