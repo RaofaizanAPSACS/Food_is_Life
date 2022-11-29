@@ -31,7 +31,6 @@ public class LoginRepository {
 		callableStatement.setString(2, encrypt.encrypt(login.getPassword(),"FAST"));
 		callableStatement.registerOutParameter(3, Types.INTEGER);
 		callableStatement.executeUpdate();
-		System.out.println("Result : "+callableStatement.getInt(3));
 		
 		if(callableStatement.getInt(3) == 1)
 			return true;
