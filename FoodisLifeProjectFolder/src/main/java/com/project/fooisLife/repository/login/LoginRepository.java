@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.project.fooisLife.config.EncryptDecrypt;
 import com.project.fooisLife.entity.Login;
 
 @Repository
@@ -22,10 +23,12 @@ public class LoginRepository {
 	
 	
 	public Boolean fetchNGOLoginDetails(Login login) throws SQLException {
+		
+		EncryptDecrypt encrypt = new EncryptDecrypt();
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call fetchNGOLogin(?, ?, ?)}");
 		callableStatement.setString(1, login.getUsername());
-		callableStatement.setString(2, login.getPassword());
+		callableStatement.setString(2, encrypt.encrypt(login.getPassword(),"FAST"));
 		callableStatement.registerOutParameter(3, Types.INTEGER);
 		callableStatement.executeUpdate();
 		System.out.println("Result : "+callableStatement.getInt(3));
@@ -36,10 +39,12 @@ public class LoginRepository {
 	}
 
 	public Boolean fetchStoreLoginDetails(Login login) throws SQLException {
+		
+		EncryptDecrypt encrypt = new EncryptDecrypt();
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call fetchStoreLogin(?, ?, ?)}");
 		callableStatement.setString(1, login.getUsername());
-		callableStatement.setString(2, login.getPassword());
+		callableStatement.setString(2, encrypt.encrypt(login.getPassword(),"FAST"));
 		callableStatement.registerOutParameter(3, Types.INTEGER);
 		callableStatement.executeUpdate();
 		
