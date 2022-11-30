@@ -5,5 +5,5 @@ import com.project.fooisLife.entity.Admin;
 
 public interface StoreRegisterService {
 	
-	public void registerStoreService(Branch branch, Admin admin);
+	public boolean registerStoreService(Branch branch, Admin admin);
 }

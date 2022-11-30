@@ -1,5 +1,9 @@
 package com.project.fooisLife.repository.register;
 
+import java.sql.CallableStatement;
+import java.sql.SQLException;
+import java.sql.Types;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +18,38 @@ public class StoreRegisterRepository{
 	@Autowired
 	private DataSource dataSource;
 	
-	 public void registerStoreInfo(int bid, String name, String address, String city, String email, String hours,
-			 String phone, String state, String username,String password, String adminEmail, String adminPhone ) {
+	private CallableStatement callableStatement;
+	
+	 public boolean registerStoreInfo(int bid, String name, String address, String city, String email, String hours,
+			 String phone, String state, String username,String password, String adminEmail, String adminPhone ) throws SQLException {
 		 
 		 	EncryptDecrypt encrypt = new EncryptDecrypt();
 			
-		 	String sqlQuery = "call RegisterRestaurantStore('" + name +"', '"+bid+"', '"+address+"', '"+city+"', '"+state+"', '"+
-		 	phone+"', '"+email+"', '"+hours+"', '"+username+"' , '"+encrypt.encrypt(password, "FAST") +"', '"+adminEmail+"', '"+ adminPhone+"')";
+//		 	String sqlQuery = "call RegisterRestaurantStore('" + name +"', '"+bid+"', '"+address+"', '"+city+"', '"+state+"', '"+
+//		 	phone+"', '"+email+"', '"+hours+"', '"+username+"' , '"+encrypt.encrypt(password, "FAST") +"', '"+adminEmail+"', '"+ adminPhone+"')";
+//			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+//			jdbcTemplate.execute(sqlQuery);
+			
 			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-			jdbcTemplate.execute(sqlQuery);
+			callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call RegisterRestaurantStore(?, ?, ?, ?, ?, ?, ?, ?"
+					+ "?, ?, ?, ?, ?)}");
+			callableStatement.setString(1, name);
+			callableStatement.setInt(2, bid);
+			callableStatement.setString(3, address);
+			callableStatement.setString(4, city);
+			callableStatement.setString(5, state);
+			callableStatement.setString(6, phone);
+			callableStatement.setString(7, email);
+			callableStatement.setString(8, hours);
+			callableStatement.setString(9, username);
+			callableStatement.setString(10, encrypt.encrypt(password, "FAST"));
+			callableStatement.setString(11, adminPhone);
+			callableStatement.setString(12, adminEmail);
+			callableStatement.registerOutParameter(13, Types.BOOLEAN);
+			callableStatement.executeUpdate();
+			
+			if(callableStatement.getBoolean(13) == true)
+				return true;
+			return false;
 	 }
-	
-	
 }

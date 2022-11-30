@@ -22,8 +22,11 @@ public class StoreRegisterController {
 	
 	@PostMapping("/registerStore")
 	public String registerStore(@RequestBody Restaurant restaurant){
-		storeRegisterService.registerStoreService(restaurant.getBranch(), restaurant.getAdmin());
+		boolean isRegistered = storeRegisterService.registerStoreService(restaurant.getBranch(), restaurant.getAdmin());
 		
+		if(isRegistered) {
+			return "Already have an account. Go for Login!";
+		}
 		return "Successfully Registered";
 	}
 	
