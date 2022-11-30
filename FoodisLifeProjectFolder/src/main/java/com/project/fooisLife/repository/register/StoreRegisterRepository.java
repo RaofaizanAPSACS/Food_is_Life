@@ -31,8 +31,7 @@ public class StoreRegisterRepository{
 //			jdbcTemplate.execute(sqlQuery);
 			
 			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-			callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call RegisterRestaurantStore(?, ?, ?, ?, ?, ?, ?, ?"
-					+ "?, ?, ?, ?, ?)}");
+			callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call RegisterRestaurantStore(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
 			callableStatement.setString(1, name);
 			callableStatement.setInt(2, bid);
 			callableStatement.setString(3, address);
