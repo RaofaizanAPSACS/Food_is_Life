@@ -20,18 +20,13 @@ public class StoreRegisterRepository{
 	
 	private CallableStatement callableStatement;
 	
-	 public boolean registerStoreInfo(int bid, String name, String address, String city, String email, String hours,
+	 public int registerStoreInfo(int bid, String name, String address, String city, String email, String hours,
 			 String phone, String state, String username,String password, String adminEmail, String adminPhone ) throws SQLException {
 		 
 		 	EncryptDecrypt encrypt = new EncryptDecrypt();
 			
-//		 	String sqlQuery = "call RegisterRestaurantStore('" + name +"', '"+bid+"', '"+address+"', '"+city+"', '"+state+"', '"+
-//		 	phone+"', '"+email+"', '"+hours+"', '"+username+"' , '"+encrypt.encrypt(password, "FAST") +"', '"+adminEmail+"', '"+ adminPhone+"')";
-//			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-//			jdbcTemplate.execute(sqlQuery);
-			
 			JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-			callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call RegisterRestaurantStore(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+			callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call RegisterRestaurantStore(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
 			callableStatement.setString(1, name);
 			callableStatement.setInt(2, bid);
 			callableStatement.setString(3, address);
@@ -45,10 +40,20 @@ public class StoreRegisterRepository{
 			callableStatement.setString(11, adminPhone);
 			callableStatement.setString(12, adminEmail);
 			callableStatement.registerOutParameter(13, Types.BOOLEAN);
+			callableStatement.registerOutParameter(14, Types.BOOLEAN);
 			callableStatement.executeUpdate();
 			
-			if(callableStatement.getBoolean(13) == true)
-				return true;
-			return false;
+			if(callableStatement.getBoolean(13))
+				return 1;
+			else if(callableStatement.getBoolean(14))
+				return 2;
+			else
+				return 0;
 	 }
 }
+
+
+
+
+
+

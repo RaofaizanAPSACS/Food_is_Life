@@ -14,7 +14,7 @@ public class StoreRegisterServiceImp implements StoreRegisterService{
 	@Autowired
 	private StoreRegisterRepository storeRegisterRepository; 
 	@Override
-	public boolean registerStoreService(Branch branch, Admin admin) {
+	public int registerStoreService(Branch branch, Admin admin) {
 		try {
 			return storeRegisterRepository.registerStoreInfo(branch.getBid(), branch.getName(), branch.getAddress(),
 					branch.getCity(), branch.getEmail(), branch.getOpenHours(), branch.getPhone(), branch.getState(),
@@ -23,7 +23,7 @@ public class StoreRegisterServiceImp implements StoreRegisterService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		return 0;
 	}
 
 }

@@ -16,8 +16,11 @@ public class NGORegisterController {
 	@PostMapping("/NgoRegistration")
 	public String registerNGO(@RequestBody NGO ngo) {
 		
-		ngoRegisterService.registerNgoService(ngo.getAdmin(), ngo.getName(), ngo.getAddress(), ngo.getCity(), ngo.getState(),
+		boolean isRegistered = ngoRegisterService.registerNgoService(ngo.getAdmin(), ngo.getName(), ngo.getAddress(), ngo.getCity(), ngo.getState(),
 				ngo.getPhone(), ngo.getEmail(), ngo.getOpenHours());
+		
+		if(isRegistered)
+			return "Account with NGO Name or Admin Email already exist";
 		return "Registered Successfully";
 	}
 }
