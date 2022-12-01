@@ -8,10 +8,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class CookieSession {
 	
+	
+	public CookieSession() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	// function to create cookies for login details of restaurant and NGOs
-	public void setCookieForLogin(Login login, HttpServletResponse res) {
-		Cookie cookie1 = new Cookie("email", login.getUsername());
-		Cookie cookie2 = new Cookie("password", login.getPassword());
+	public void setCookieForLogin(Login login, HttpServletResponse res, String email, String password) {
+		Cookie cookie1 = new Cookie(email, login.getUsername());
+		Cookie cookie2 = new Cookie(password, login.getPassword());
 		
 		cookie1.setMaxAge(30*60);
 		cookie1.setSecure(true);
@@ -25,9 +31,9 @@ public class CookieSession {
 		res.addCookie(cookie2);
 	}	
 	
-	public void deleteCookies(HttpServletResponse res) {
-		Cookie cookie1 = new Cookie("email", null);
-		Cookie cookie2 = new Cookie("password", null);
+	public void deleteCookies(HttpServletResponse res, String email, String password) {
+		Cookie cookie1 = new Cookie(email, null);
+		Cookie cookie2 = new Cookie(password, null);
 		
 		cookie1.setMaxAge(0);
 		cookie1.setSecure(true);

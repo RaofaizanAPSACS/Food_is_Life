@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.fooisLife.config.CookieSession;
 import com.project.fooisLife.entity.FoodItem;
 
 import jakarta.servlet.http.Cookie;
@@ -17,13 +18,10 @@ public class RestaurantFoodItemController {
 	
 	//@RequestBody List<FoodItem> foodItems,
 	@GetMapping("/addFoodItems")
-	public String addFoodItems( HttpServletRequest req ) {
-		Cookie cookies[] = req.getCookies();
+	public String addFoodItems(HttpServletRequest req ) {
+		CookieSession cookie = new CookieSession();
 		
-		for( Cookie c : cookies) {
-			if(c.getName().equals("email") || c.getName().equals("password"))
-				System.out.println("Cookie 1 value : " + c.getName() +" : "+ c.getValue());
-		}
+		System.out.println(cookie.getCookieValue(req, "StoreEmail"));
 		return "Food items";
 	}
 }

@@ -5,8 +5,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.fooisLife.config.CookieSession;
 import com.project.fooisLife.entity.Login;
 import com.project.fooisLife.service.login.LoginService;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 public class NGOLoginController {
@@ -15,7 +18,11 @@ public class NGOLoginController {
 	private LoginService loginService;
 	
 	@PostMapping("/NGOLogin")
-	public String loginNGO(@RequestBody Login login) {
+	public String loginNGO(@RequestBody Login login, HttpServletResponse res) {
+		
+		CookieSession cookie = new CookieSession();
+		cookie.setCookieForLogin(login, res, "NgoEmail", "NgoPassword");
+		
 		if(loginService.signInNGO(login))
 			return "Logged In";
 		return "Wrong Credentials";
