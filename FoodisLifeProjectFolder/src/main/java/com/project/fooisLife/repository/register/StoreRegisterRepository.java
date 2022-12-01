@@ -43,9 +43,15 @@ public class StoreRegisterRepository{
 			callableStatement.registerOutParameter(14, Types.BOOLEAN);
 			callableStatement.executeUpdate();
 			
-			if(callableStatement.getBoolean(13))
+			boolean val1 = callableStatement.getBoolean(13);
+			boolean val2 = callableStatement.getBoolean(14);
+			
+			// close connection
+			callableStatement.getConnection().close();
+			
+			if(val1)
 				return 1;
-			else if(callableStatement.getBoolean(14))
+			else if(val2)
 				return 2;
 			else
 				return 0;

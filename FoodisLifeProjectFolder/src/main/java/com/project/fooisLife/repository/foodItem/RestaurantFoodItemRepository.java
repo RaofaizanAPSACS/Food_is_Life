@@ -29,13 +29,16 @@ public class RestaurantFoodItemRepository {
 		callableStatement.setString(1, email);
 		callableStatement.registerOutParameter(2, Types.INTEGER);
 		callableStatement.executeUpdate();
+		int val = callableStatement.getInt(2); 
 		
-		return callableStatement.getInt(2);
+		callableStatement.getConnection().close();
+		return val;
 	}
 	
 	public boolean addRestaurantFoodItemsRepository(List<FoodItem> foodItems, String email) throws SQLException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		int index = getAddIndex(email);
+		
 		
 		for(FoodItem item : foodItems) {
 			
@@ -47,6 +50,7 @@ public class RestaurantFoodItemRepository {
 			callableStatement.executeUpdate();
 		}
 		
+		callableStatement.getConnection().close();
 		return true;
 	}
 }

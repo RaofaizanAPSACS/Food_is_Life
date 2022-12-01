@@ -21,7 +21,6 @@ public class LoginRepository {
 	 
 	private CallableStatement callableStatement;
 	
-	
 	public Boolean fetchNGOLoginDetails(Login login) throws SQLException {
 		
 		EncryptDecrypt encrypt = new EncryptDecrypt();
@@ -32,7 +31,11 @@ public class LoginRepository {
 		callableStatement.registerOutParameter(3, Types.INTEGER);
 		callableStatement.executeUpdate();
 		
-		if(callableStatement.getInt(3) == 1)
+		int val = callableStatement.getInt(3);
+		// close connection
+		callableStatement.getConnection().close();
+		
+		if(val == 1)
 			return true;
 		return false;
 	}
@@ -47,7 +50,11 @@ public class LoginRepository {
 		callableStatement.registerOutParameter(3, Types.INTEGER);
 		callableStatement.executeUpdate();
 		
-		if(callableStatement.getInt(3) == 1)
+		int val = callableStatement.getInt(3);
+		// close connection
+		callableStatement.getConnection().close();
+		
+		if(val == 1)
 			return true;
 		return false;
 	}

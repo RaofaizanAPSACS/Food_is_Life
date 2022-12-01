@@ -41,7 +41,11 @@ public class NgoRegisterRepository {
 		callableStatement.registerOutParameter(12, Types.BOOLEAN);
 		callableStatement.executeUpdate();
 		
-		if(callableStatement.getBoolean(12))
+		
+		boolean val = callableStatement.getBoolean(12);
+		// close connection
+		callableStatement.getConnection().close();
+		if(val)
 			return true;
 		return false;
 	}
