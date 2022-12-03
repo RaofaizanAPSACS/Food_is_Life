@@ -49,8 +49,10 @@ public class CartController {
 		String email = cookie.getCookieValue(req, "NgoEmail");
 		String password = cookie.getCookieValue(req, "NgoPassword");
 		
+		
 		if(loginService.signInNGO(new Login(email, password))) {
 			if(orderService.orderService(cart, order))
+				cart.clear();
 				return "Order Booked";
 		}
 		return "Session Logged out";

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.fooisLife.entity.Cart;
 import com.project.fooisLife.entity.Order;
+import com.project.fooisLife.entity.StoreOrder;
 import com.project.fooisLife.repository.order.OrderRepository;
 
 @Service
@@ -24,5 +25,9 @@ public class OrderService {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public List<StoreOrder> showOrders(String email) {
+		return orderRepository.showOrdersRepository(email);
 	}
 }
