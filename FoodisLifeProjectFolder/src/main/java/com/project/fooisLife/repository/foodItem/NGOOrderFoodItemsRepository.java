@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.project.fooisLife.entity.FoodItemCard;
+import com.project.fooisLife.mapper.FoodItemCardRowMapper;
 
 @Repository
 public class NGOOrderFoodItemsRepository {
@@ -20,14 +21,10 @@ public class NGOOrderFoodItemsRepository {
 	
 	CallableStatement callableStatement;
 	
-	public List<FoodItemCard> orderFoodItemsRepository(String email) throws SQLException {
+	public List<FoodItemCard> orderFoodItemsRepository() throws SQLException {
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 			
-		callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call addLeftovers(?, ?, ?, ?)}");
-		callableStatement.executeUpdate();
-		
-		callableStatement.getConnection().close();
-		return null;
+		return jdbcTemplate.query("call fetchLeftoversDetails();", new FoodItemCardRowMapper());
 	}
 }

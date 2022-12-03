@@ -15,9 +15,10 @@ public class NGOOrderFoodItemsService {
 	@Autowired
 	private NGOOrderFoodItemsRepository nGOFoodItemsRepository;
 	
-	public List<FoodItemCard> orderFoodItemsService(String email){
+	public List<FoodItemCard> orderFoodItemsService(){
 		try {
-			nGOFoodItemsRepository.orderFoodItemsRepository(email);
+			System.out.println(nGOFoodItemsRepository.orderFoodItemsRepository());
+			return nGOFoodItemsRepository.orderFoodItemsRepository();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
