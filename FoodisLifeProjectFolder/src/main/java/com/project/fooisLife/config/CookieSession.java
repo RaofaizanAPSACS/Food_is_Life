@@ -35,6 +35,7 @@ public class CookieSession {
 		Cookie cookie1 = new Cookie(email, null);
 		Cookie cookie2 = new Cookie(password, null);
 		
+		
 		cookie1.setMaxAge(0);
 		cookie1.setSecure(true);
 		cookie1.setHttpOnly(true);

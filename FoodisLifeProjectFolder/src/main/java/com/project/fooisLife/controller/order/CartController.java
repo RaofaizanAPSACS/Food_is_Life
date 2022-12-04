@@ -51,9 +51,11 @@ public class CartController {
 		
 		
 		if(loginService.signInNGO(new Login(email, password))) {
-			if(orderService.orderService(cart, order))
+			if( ( !cart.isEmpty() && order != null)  && orderService.orderService(cart, order)) {
 				cart.clear();
 				return "Order Booked";
+			}
+			return "Cart is Empty";
 		}
 		return "Session Logged out";
 	}

@@ -38,7 +38,7 @@ public class NGOOrderFoodItemsService {
 			ArrayList<FoodItemCard> newList = new ArrayList<FoodItemCard>();
 			
 			for( FoodItemCard item : nGOFoodItemsRepository.orderFoodItemsRepository()) {
-				if( item.getLeftover().getQuantity() > 0 && item.getBranch().getName().equals(name)) {
+				if( item.getLeftover().getQuantity() > 0 && item.getBranch().getName().toLowerCase().equals(name.toLowerCase())) {
 					newList.add(item);
 				}
 			}
@@ -55,7 +55,7 @@ public class NGOOrderFoodItemsService {
 			ArrayList<FoodItemCard> newList = new ArrayList<FoodItemCard>();
 			
 			for( FoodItemCard item : nGOFoodItemsRepository.orderFoodItemsRepository()) {
-				if( item.getLeftover().getQuantity() > 0 && item.getFoodItem().getItemName().equals(name)) {
+				if( item.getLeftover().getQuantity() > 0 && item.getFoodItem().getItemName().toLowerCase().equals(name.toLowerCase())) {
 					newList.add(item);
 				}
 			}
