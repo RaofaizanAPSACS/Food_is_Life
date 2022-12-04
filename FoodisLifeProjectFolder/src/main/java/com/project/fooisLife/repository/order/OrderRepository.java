@@ -54,6 +54,4 @@ public class OrderRepository {
 		
 		return jdbcTemplate.query("call showStoreOrders(?);",new Object[] {email}, new StoreOrderRowMapper());
 	}
-	
-	
 }

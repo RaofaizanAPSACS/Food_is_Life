@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.fooisLife.config.CookieSession;
@@ -26,7 +26,7 @@ public class NGOOrderFoodItemsController {
 	@Autowired 
 	private LoginService loginService;
 	
-	@PostMapping("/OrderFoodItems")
+	@GetMapping("/OrderFoodItems")
 	public List<FoodItemCard> orderFoodItems(HttpServletRequest req) {
 		CookieSession cookie = new CookieSession();
 		String email = cookie.getCookieValue(req, "NgoEmail");
@@ -35,6 +35,32 @@ public class NGOOrderFoodItemsController {
 		
 		if(loginService.signInNGO(new Login(email, password))) {
 			return nGOOrderFoodItemsService.orderFoodItemsService();
+		}
+		return null;
+	}
+	
+	@GetMapping("/searchFoodByStore")
+	public List<FoodItemCard> searchFoodByStoreName(HttpServletRequest req, @RequestParam String name) {
+		CookieSession cookie = new CookieSession();
+		String email = cookie.getCookieValue(req, "NgoEmail");
+		String password = cookie.getCookieValue(req, "NgoPassword");
+		
+		
+		if(loginService.signInNGO(new Login(email, password))) {
+			return nGOOrderFoodItemsService.searchFoodByStoreNameService(name);
+		}
+		return null;
+	}
+	
+	@GetMapping("/searchFoodByItem")
+	public List<FoodItemCard> searchFoodByItemName(HttpServletRequest req, @RequestParam String name) {
+		CookieSession cookie = new CookieSession();
+		String email = cookie.getCookieValue(req, "NgoEmail");
+		String password = cookie.getCookieValue(req, "NgoPassword");
+		
+		
+		if(loginService.signInNGO(new Login(email, password))) {
+			return nGOOrderFoodItemsService.searchFoodByItemNameService(name);
 		}
 		return null;
 	}
