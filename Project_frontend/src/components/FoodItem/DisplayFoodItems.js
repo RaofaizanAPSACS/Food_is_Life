@@ -1,4 +1,5 @@
 import React from "react";
+
 export default function DisplayFoodItems() {
   return (
     <div className="pt-32">

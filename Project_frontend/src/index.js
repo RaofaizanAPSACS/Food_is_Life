@@ -12,7 +12,6 @@ import Auth from "layouts/Auth.js";
 
 // views without layouts
 
-import Profile from "views/Profile.js";
 import Index from "views/Index.js";
 import RegisterForNGO from "components/Register/RegisterForNGO";
 import RegisterForRestaurant from "components/Register/RegisterForRestaurant";
@@ -24,9 +23,8 @@ ReactDOM.render(
     <Switch>
       {/* add routes with layouts */}
       <Route path="/admin" component={Admin} />
-      {/* <Route path="/restaurant" component={Auth} /> */}
+      <Route path="/auth" component={Auth} />
       {/* add routes without layouts */}
-      <Route path="/profile" exact component={Profile} />
       <Route path="/" exact component={Index} />
       <Route path="/RegisterForNGO" exact component={RegisterForNGO} />
       <Route

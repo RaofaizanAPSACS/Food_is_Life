@@ -1,6 +1,91 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useState } from "react";
+// import { Link } from "react-router-dom";
 export default function RegisterForRestaurant() {
+  const [branchName, setBranchName] = useState();
+  const [bid, setBid] = useState();
+  const [city, setCity] = useState();
+  const [branchEmail, setBranchEmail] = useState();
+  const [openHourStart, setOpenHourStart] = useState();
+  const [openHourEnd, setOpenHourEnd] = useState();
+  const [branchPhone, setBranchPhone] = useState();
+  const [branchState, setBranchState] = useState();
+  const [branchAddress, setBranchAddress] = useState();
+  const [adminUsername, setAdminUsername] = useState();
+  const [password, setPassword] = useState();
+  const [adminPhone, setAdminPhone] = useState();
+  const [adminEmail, setAdminEmail] = useState();
+
+  const handleBranchName = (event) => {
+    setBranchName(event.target.value);
+  };
+  const handleBid = (event) => {
+    setBid(event.target.value);
+  };
+
+  const hadnleCity = (event) => {
+    setCity(event.target.value);
+  };
+  const handleBranchEmail = (event) => {
+    setBranchEmail(event.target.value);
+  };
+  const handleOpenHourStart = (event) => {
+    setOpenHourStart(event.target.value);
+  };
+  const handleOpenHourEnd = (event) => {
+    setOpenHourEnd(event.target.value);
+  };
+  const handleBranchPhone = (event) => {
+    setBranchPhone(event.target.value);
+  };
+  const handleBranchState = (event) => {
+    setBranchState(event.target.value);
+  };
+
+  const handleBranchAddress = (event) => {
+    setBranchAddress(event.target.value);
+  };
+
+  const handleAdminUsername = (event) => {
+    setAdminUsername(event.target.value);
+  };
+
+  const handlePassword = (event) => {
+    setPassword(event.target.value);
+  };
+  const handleAdminPhone = (event) => {
+    setAdminPhone(event.target.value);
+  };
+
+  const handleAdminEmail = (event) => {
+    setAdminEmail(event.target.value);
+  };
+
+  const handleApi = () => {
+    // console.log(adminUsername);
+    axios
+      .post("http://localhost:8086/registerStore", {
+        branch: {
+          name: branchName,
+          bid: bid,
+          city: city,
+          openHours: openHourStart + openHourEnd,
+          email: branchEmail,
+          phone: branchPhone,
+          state: branchState,
+          address: branchAddress,
+        },
+        admin: {
+          username: adminUsername,
+          password: password,
+          phone: adminPhone,
+          email: adminEmail,
+        },
+      })
+      .then((result) => console.log(result.data))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -31,7 +116,8 @@ export default function RegisterForRestaurant() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Restaurant Name"
-                      name="name"
+                      value={branchName}
+                      onChange={handleBranchName}
                     />
                   </div>
                   <div className="relative w-full mb-3">
@@ -45,7 +131,8 @@ export default function RegisterForRestaurant() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Branch ID"
-                      name="bid"
+                      value={bid}
+                      onChange={handleBid}
                     />
                   </div>
 
@@ -60,7 +147,8 @@ export default function RegisterForRestaurant() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Restaurant City"
-                      name="branch.city"
+                      value={city}
+                      onChange={hadnleCity}
                     />
                   </div>
 
@@ -75,6 +163,8 @@ export default function RegisterForRestaurant() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Restaurant Email Address"
+                      value={branchEmail}
+                      onChange={handleBranchEmail}
                     />
                   </div>
 
@@ -89,6 +179,8 @@ export default function RegisterForRestaurant() {
                       type="time"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Start Time"
+                      value={openHourStart}
+                      onChange={handleOpenHourStart}
                     />
                   </div>
 
@@ -103,6 +195,8 @@ export default function RegisterForRestaurant() {
                       type="time"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="End Time"
+                      value={openHourEnd}
+                      onChange={handleOpenHourEnd}
                     />
                   </div>
 
@@ -117,6 +211,8 @@ export default function RegisterForRestaurant() {
                       type="tel"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Restaurant Phone"
+                      value={branchPhone}
+                      onChange={handleBranchPhone}
                     />
                   </div>
                   <div className="relative w-full mb-3">
@@ -130,6 +226,8 @@ export default function RegisterForRestaurant() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Restaurant State"
+                      value={branchState}
+                      onChange={handleBranchState}
                     />
                   </div>
 
@@ -144,6 +242,8 @@ export default function RegisterForRestaurant() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Street Details"
+                      value={branchAddress}
+                      onChange={handleBranchAddress}
                     />
                   </div>
 
@@ -158,6 +258,8 @@ export default function RegisterForRestaurant() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Admin Username"
+                      value={adminUsername}
+                      onChange={handleAdminUsername}
                     />
                   </div>
 
@@ -172,6 +274,8 @@ export default function RegisterForRestaurant() {
                       type="password"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
+                      value={password}
+                      onChange={handlePassword}
                     />
                   </div>
 
@@ -186,6 +290,8 @@ export default function RegisterForRestaurant() {
                       type="tel"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Admin Phone"
+                      value={adminPhone}
+                      onChange={handleAdminPhone}
                     />
                   </div>
 
@@ -200,37 +306,20 @@ export default function RegisterForRestaurant() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Admin Email"
+                      value={adminEmail}
+                      onChange={handleAdminEmail}
                     />
                   </div>
-
-                  <div>
-                    <label className="inline-flex items-center cursor-pointer">
-                      <input
-                        id="customCheckLogin"
-                        type="checkbox"
-                        className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                      />
-                      <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                        I agree with the{" "}
-                        <a
-                          href="#pablo"
-                          className="text-lightBlue-500"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          Privacy Policy
-                        </a>
-                      </span>
-                    </label>
-                  </div>
                   <div className="text-center mt-6">
-                    <Link to="/admin/dashboard">
-                      <button
-                        className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                        type="button"
-                      >
-                        Create Account
-                      </button>
-                    </Link>
+                    {/* <Link to="/admin/dashboard"> */}
+                    <button
+                      className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={handleApi}
+                    >
+                      Create Account
+                    </button>
+                    {/* </Link> */}
                   </div>
                 </form>
               </div>

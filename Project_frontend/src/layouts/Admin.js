@@ -8,10 +8,12 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 // views
 
 import AddFoodItems from "components/FoodItem/AddFoodItems";
-import LoginNGO from "components/Login/LoginNGO";
 import DisplayFoodItems from "components/FoodItem/DisplayFoodItems";
 import UpdateFoodItems from "components/FoodItem/UpdateFoodItems";
 import AddLeftovers from "components/Leftovers/AddLeftovers";
+import UpdateLeftovers from "components/Leftovers/UpdateLeftovers";
+import Order from "components/Leftovers/Order/Order";
+import RemoveFoodItems from "components/FoodItem/RemoveFoodItems";
 
 export default function Admin() {
   return (
@@ -26,13 +28,23 @@ export default function Admin() {
               exact
               component={DisplayFoodItems}
             />
-            <Route path="/admin/RemoveFoodItems" exact component={LoginNGO} />
+            <Route
+              path="/admin/RemoveFoodItems"
+              exact
+              component={RemoveFoodItems}
+            />
             <Route
               path="/admin/UpdateFoodItems"
               exact
               component={UpdateFoodItems}
             />
             <Route path="/admin/AddLeftovers" exact component={AddLeftovers} />
+            <Route
+              path="/admin/UpdateLeftovers"
+              exact
+              component={UpdateLeftovers}
+            />
+            <Route path="/admin/Order" exact component={Order} />
 
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
