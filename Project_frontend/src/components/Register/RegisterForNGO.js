@@ -1,8 +1,14 @@
 import React from "react";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 export default function RegisterForNGO() {
+  const notify = () => {
+    toast("Account Created");
+  };
   return (
     <>
+      <ToastContainer />
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-6/12 px-4">
@@ -179,12 +185,15 @@ export default function RegisterForNGO() {
                     </label>
                   </div>
                   <div className="text-center mt-6">
-                    <button
-                      className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                      type="button"
-                    >
-                      Create Account
-                    </button>
+                    <Link to="/LoginNGO">
+                      <button
+                        className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                        type="button"
+                        onClick={notify}
+                      >
+                        Create Account
+                      </button>
+                    </Link>
                   </div>
                 </form>
               </div>

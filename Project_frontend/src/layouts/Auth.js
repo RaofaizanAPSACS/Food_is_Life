@@ -4,12 +4,11 @@ import { Switch, Route, Redirect } from "react-router-dom";
 // components
 
 import Navbar from "components/Navbars/AuthNavbar.js";
-import FooterSmall from "components/Footers/FooterSmall.js";
 
 // views
 
-import Login from "views/auth/Login.js";
-import Register from "views/auth/Register.js";
+import AddLeftovers from "components/Leftovers/AddLeftovers";
+import UpdateLeftovers from "components/Leftovers/UpdateLeftovers";
 
 export default function Auth() {
   return (
@@ -25,11 +24,18 @@ export default function Auth() {
             }}
           ></div>
           <Switch>
-            <Route path="/auth/login" exact component={Login} />
-            <Route path="/auth/register" exact component={Register} />
-            <Redirect from="/auth" to="/auth/login" />
+            <Route
+              path="/restaurant/AddLeftovers"
+              exact
+              component={AddLeftovers}
+            />
+            <Route
+              path="/restaurant/UpdateLeftovers"
+              exact
+              component={UpdateLeftovers}
+            />
+            <Redirect from="/restaurant" to="/restaurant/leftovers" />
           </Switch>
-          <FooterSmall absolute />
         </section>
       </main>
     </>

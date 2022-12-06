@@ -5,7 +5,8 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { v4 as uuidv4 } from "uuid";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 function AddFoodItems() {
   const classes = useStyles();
   const [inputFields, setInputFields] = useState([
-    { id: uuidv4(), firstName: "", lastName: "" },
+    { id: uuidv4(), foodName: "", foodDecription: "" },
   ]);
 
   const handleSubmit = (e) => {
@@ -49,7 +50,12 @@ function AddFoodItems() {
       { id: uuidv4(), foodName: "", foodDecription: "" },
     ]);
   };
-
+  const notify = () => {
+    toast.dark("Submitted");
+  };
+  const notify_decrement = () => {
+    toast("Item Removed");
+  };
   const handleRemoveFields = (id) => {
     const values = [...inputFields];
     values.splice(
@@ -61,6 +67,7 @@ function AddFoodItems() {
 
   return (
     <Container>
+      <ToastContainer />
       <div className="text-center pt-20 mt-10">
         <h1 className="font-bold text-4xl text-blue-600 text-center ">
           Add Food Item
@@ -73,14 +80,14 @@ function AddFoodItems() {
                 name="foodName"
                 label="Food Name"
                 variant="filled"
-                value={inputField.firstName}
+                value={inputField.foodName}
                 onChange={(event) => handleChangeInput(inputField.id, event)}
               />
               <TextField
                 name="foodDescription"
                 label="Food Description"
                 variant="filled"
-                value={inputField.lastName}
+                value={inputField.foodDecription}
                 onChange={(event) => handleChangeInput(inputField.id, event)}
               />
               <IconButton
@@ -99,9 +106,9 @@ function AddFoodItems() {
             variant="contained"
             color="primary"
             type="submit"
-            onClick={handleSubmit}
+            onClick={({ handleSubmit }, notify)}
           >
-            Send
+            Add to Menu
           </Button>
         </form>
       </div>

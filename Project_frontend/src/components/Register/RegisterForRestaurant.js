@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 export default function RegisterForRestaurant() {
   return (
     <>
@@ -31,6 +31,7 @@ export default function RegisterForRestaurant() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Restaurant Name"
+                      name="name"
                     />
                   </div>
                   <div className="relative w-full mb-3">
@@ -44,6 +45,7 @@ export default function RegisterForRestaurant() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Branch ID"
+                      name="bid"
                     />
                   </div>
 
@@ -58,6 +60,7 @@ export default function RegisterForRestaurant() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Restaurant City"
+                      name=""
                     />
                   </div>
 
@@ -220,12 +223,14 @@ export default function RegisterForRestaurant() {
                     </label>
                   </div>
                   <div className="text-center mt-6">
-                    <button
-                      className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                      type="button"
-                    >
-                      Create Account
-                    </button>
+                    <Link to="/admin/dashboard">
+                      <button
+                        className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                        type="button"
+                      >
+                        Create Account
+                      </button>
+                    </Link>
                   </div>
                 </form>
               </div>

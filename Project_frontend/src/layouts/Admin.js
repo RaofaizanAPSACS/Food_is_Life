@@ -3,10 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 // components
 
-// import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
-// import HeaderStats from "components/Headers/HeaderStats.js";
-// import FooterAdmin from "components/Footers/FooterAdmin.js";
 
 // views
 
@@ -14,7 +11,6 @@ import AddFoodItems from "components/FoodItem/AddFoodItems";
 import LoginNGO from "components/Login/LoginNGO";
 import LoginRestaurant from "components/Login/LoginRestaurant";
 import DisplayFoodItems from "components/FoodItem/DisplayFoodItems";
-import Navbar from "components/Navbars/AdminNavbar";
 
 export default function Admin() {
   return (
