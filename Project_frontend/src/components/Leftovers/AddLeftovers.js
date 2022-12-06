@@ -108,7 +108,7 @@ function AddLeftovers() {
             type="submit"
             onClick={({ handleSubmit }, notify)}
           >
-            Add to Menu
+            Add to Leftovers
           </Button>
         </form>
       </div>
