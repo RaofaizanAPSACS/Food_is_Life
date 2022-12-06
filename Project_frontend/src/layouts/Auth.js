@@ -24,17 +24,13 @@ export default function Auth() {
             }}
           ></div>
           <Switch>
-            <Route
-              path="/restaurant/AddLeftovers"
-              exact
-              component={AddLeftovers}
-            />
+            <Route path="/auth/AddLeftovers" exact component={AddLeftovers} />
             <Route
               path="/restaurant/UpdateLeftovers"
               exact
               component={UpdateLeftovers}
             />
-            <Redirect from="/restaurant" to="/restaurant/leftovers" />
+            <Redirect from="/auth" to="/auth/leftovers" />
           </Switch>
         </section>
       </main>

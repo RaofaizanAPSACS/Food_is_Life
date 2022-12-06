@@ -24,7 +24,7 @@ ReactDOM.render(
     <Switch>
       {/* add routes with layouts */}
       <Route path="/admin" component={Admin} />
-      <Route path="/restaurant" component={Auth} />
+      {/* <Route path="/restaurant" component={Auth} /> */}
       {/* add routes without layouts */}
       <Route path="/profile" exact component={Profile} />
       <Route path="/" exact component={Index} />

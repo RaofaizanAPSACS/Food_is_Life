@@ -9,8 +9,9 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 
 import AddFoodItems from "components/FoodItem/AddFoodItems";
 import LoginNGO from "components/Login/LoginNGO";
-import LoginRestaurant from "components/Login/LoginRestaurant";
 import DisplayFoodItems from "components/FoodItem/DisplayFoodItems";
+import UpdateFoodItems from "components/FoodItem/UpdateFoodItems";
+import AddLeftovers from "components/Leftovers/AddLeftovers";
 
 export default function Admin() {
   return (
@@ -27,10 +28,12 @@ export default function Admin() {
             />
             <Route path="/admin/RemoveFoodItems" exact component={LoginNGO} />
             <Route
-              path="/admin/UpdateFootItems"
+              path="/admin/UpdateFoodItems"
               exact
-              component={LoginRestaurant}
+              component={UpdateFoodItems}
             />
+            <Route path="/admin/AddLeftovers" exact component={AddLeftovers} />
+
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
         </div>
