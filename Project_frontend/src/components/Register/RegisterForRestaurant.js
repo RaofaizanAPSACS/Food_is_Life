@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
+
 export default function RegisterForRestaurant() {
   const [branchName, setBranchName] = useState();
   const [bid, setBid] = useState();
@@ -61,15 +61,16 @@ export default function RegisterForRestaurant() {
     setAdminEmail(event.target.value);
   };
 
-  const handleApi = () => {
+  const handleApi = (e) => {
     // console.log(adminUsername);
+    e.preventDefault();
     axios
       .post("http://localhost:8086/registerStore", {
         branch: {
           name: branchName,
           bid: bid,
           city: city,
-          openHours: openHourStart + openHourEnd,
+          openHours: openHourStart + " " + openHourEnd,
           email: branchEmail,
           phone: branchPhone,
           state: branchState,
@@ -82,7 +83,16 @@ export default function RegisterForRestaurant() {
           email: adminEmail,
         },
       })
-      .then((result) => console.log(result.data))
+      .then((result) => {
+        console.log(result.data);
+        if (result.data === "Already have an account. Go for Login!") {
+          alert("Already have an account. Go for Login!");
+        } else if ("Successfully Registered") {
+          alert("Successfully Registered");
+        } else {
+          alert("Account already exists with same Admin Email");
+        }
+      })
       .catch((err) => console.log(err));
   };
 
@@ -104,7 +114,7 @@ export default function RegisterForRestaurant() {
                 <div className="text-blueGray-400 text-center mb-3 font-bold">
                   <small>Register with credentials</small>
                 </div>
-                <form>
+                <form onSubmit={handleApi}>
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -114,6 +124,7 @@ export default function RegisterForRestaurant() {
                     </label>
                     <input
                       type="text"
+                      required={true}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Restaurant Name"
                       value={branchName}
@@ -129,6 +140,7 @@ export default function RegisterForRestaurant() {
                     </label>
                     <input
                       type="text"
+                      required={true}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Branch ID"
                       value={bid}
@@ -164,6 +176,7 @@ export default function RegisterForRestaurant() {
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Restaurant Email Address"
                       value={branchEmail}
+                      required={true}
                       onChange={handleBranchEmail}
                     />
                   </div>
@@ -213,6 +226,7 @@ export default function RegisterForRestaurant() {
                       placeholder="Restaurant Phone"
                       value={branchPhone}
                       onChange={handleBranchPhone}
+                      required={true}
                     />
                   </div>
                   <div className="relative w-full mb-3">
@@ -228,6 +242,7 @@ export default function RegisterForRestaurant() {
                       placeholder="Restaurant State"
                       value={branchState}
                       onChange={handleBranchState}
+                      required={true}
                     />
                   </div>
 
@@ -244,6 +259,7 @@ export default function RegisterForRestaurant() {
                       placeholder="Street Details"
                       value={branchAddress}
                       onChange={handleBranchAddress}
+                      required={true}
                     />
                   </div>
 
@@ -260,6 +276,7 @@ export default function RegisterForRestaurant() {
                       placeholder="Admin Username"
                       value={adminUsername}
                       onChange={handleAdminUsername}
+                      required={true}
                     />
                   </div>
 
@@ -276,6 +293,7 @@ export default function RegisterForRestaurant() {
                       placeholder="Password"
                       value={password}
                       onChange={handlePassword}
+                      required={true}
                     />
                   </div>
 
@@ -292,6 +310,7 @@ export default function RegisterForRestaurant() {
                       placeholder="Admin Phone"
                       value={adminPhone}
                       onChange={handleAdminPhone}
+                      required={true}
                     />
                   </div>
 
@@ -308,14 +327,14 @@ export default function RegisterForRestaurant() {
                       placeholder="Admin Email"
                       value={adminEmail}
                       onChange={handleAdminEmail}
+                      required={true}
                     />
                   </div>
                   <div className="text-center mt-6">
                     {/* <Link to="/admin/dashboard"> */}
                     <button
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                      type="button"
-                      onClick={handleApi}
+                      type="submit"
                     >
                       Create Account
                     </button>

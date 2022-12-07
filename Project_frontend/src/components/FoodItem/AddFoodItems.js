@@ -8,6 +8,7 @@ import AddIcon from "@material-ui/icons/Add";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -25,12 +26,19 @@ const useStyles = makeStyles((theme) => ({
 function AddFoodItems() {
   const classes = useStyles();
   const [inputFields, setInputFields] = useState([
-    { id: uuidv4(), foodName: "", foodDecription: "" },
+    { id: uuidv4(), itemName: "", itemDescription: "" },
   ]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("InputFields", inputFields);
+    console.log("InputFields", ...inputFields);
+
+    axios
+      .post("http://localhost:8086/addFoodItems", inputFields)
+      .then((result) => {
+        console.log(result.data);
+      })
+      .catch((err) => console.log(err.response.data.message));
   };
 
   const handleChangeInput = (id, event) => {
@@ -47,15 +55,13 @@ function AddFoodItems() {
   const handleAddFields = () => {
     setInputFields([
       ...inputFields,
-      { id: uuidv4(), foodName: "", foodDecription: "" },
+      { id: uuidv4(), itemName: "", itemDescription: "" },
     ]);
   };
   const notify = () => {
     toast.dark("Submitted");
   };
-  const notify_decrement = () => {
-    toast("Item Removed");
-  };
+
   const handleRemoveFields = (id) => {
     const values = [...inputFields];
     values.splice(
@@ -77,17 +83,17 @@ function AddFoodItems() {
           {inputFields.map((inputField) => (
             <div key={inputField.id}>
               <TextField
-                name="foodName"
+                name="itemName"
                 label="Food Name"
                 variant="filled"
-                value={inputField.foodName}
+                value={inputField.itemName}
                 onChange={(event) => handleChangeInput(inputField.id, event)}
               />
               <TextField
-                name="foodDescription"
+                name="itemDescription"
                 label="Food Description"
                 variant="filled"
-                value={inputField.foodDecription}
+                value={inputField.itemDescription}
                 onChange={(event) => handleChangeInput(inputField.id, event)}
               />
               <IconButton

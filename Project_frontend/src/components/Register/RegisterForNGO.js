@@ -1,14 +1,86 @@
-import React from "react";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import axios from "axios";
+
 export default function RegisterForNGO() {
-  const notify = () => {
-    toast("Account Created");
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [state, setState] = useState("");
+  const [street, setStreet] = useState("");
+  const [adminUsername, setAdminUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [adminPhone, setAdminPhone] = useState("");
+  const [adminEmail, setAdminEmail] = useState("");
+
+  const handleName = (e) => {
+    setName(e.target.value);
   };
+  const handleCity = (e) => {
+    setCity(e.target.value);
+  };
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const handlePhone = (e) => {
+    setPhone(e.target.value);
+  };
+  const handleState = (e) => {
+    setState(e.target.value);
+  };
+  const handleStreet = (e) => {
+    setStreet(e.target.value);
+  };
+  const handleAdminUsername = (e) => {
+    setAdminUsername(e.target.value);
+  };
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleAdminPhone = (e) => {
+    setAdminPhone(e.target.value);
+  };
+  const handleAdminEmail = (e) => {
+    setAdminEmail(e.target.value);
+  };
+
+  const handleApi = (event) => {
+    // console.log(adminUsername);
+    event.preventDefault();
+
+    axios
+      .post("http://localhost:8086/NgoRegistration", {
+        name: name,
+        city: city,
+        email: email,
+        openHours: " ",
+        phone: phone,
+        state: state,
+        address: street,
+
+        admin: {
+          username: adminUsername,
+          password: password,
+          phone: adminPhone,
+          email: adminEmail,
+        },
+      })
+      .then((result) => {
+        console.log(result.data);
+        if (
+          result.data === "Account with NGO Name or Admin Email already exist"
+        ) {
+          alert("Account with NGO Name or Admin Email already exist");
+        } else {
+          alert("Registered Successfully");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
-      <ToastContainer />
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-6/12 px-4">
@@ -25,7 +97,7 @@ export default function RegisterForNGO() {
                 <div className="text-blueGray-400 text-center mb-3 font-bold">
                   <small>Register with credentials</small>
                 </div>
-                <form>
+                <form onSubmit={handleApi}>
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -37,6 +109,9 @@ export default function RegisterForNGO() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="NGO Name"
+                      required={true}
+                      value={name}
+                      onChange={handleName}
                     />
                   </div>
 
@@ -51,6 +126,9 @@ export default function RegisterForNGO() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="NGO City"
+                      required={true}
+                      value={city}
+                      onChange={handleCity}
                     />
                   </div>
 
@@ -65,6 +143,9 @@ export default function RegisterForNGO() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="NGO Email Address"
+                      required={true}
+                      value={email}
+                      onChange={handleEmail}
                     />
                   </div>
 
@@ -79,6 +160,9 @@ export default function RegisterForNGO() {
                       type="tel"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="NGO Phone"
+                      required={true}
+                      value={phone}
+                      onChange={handlePhone}
                     />
                   </div>
                   <div className="relative w-full mb-3">
@@ -92,6 +176,9 @@ export default function RegisterForNGO() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="NGO State"
+                      required={true}
+                      value={state}
+                      onChange={handleState}
                     />
                   </div>
 
@@ -106,6 +193,9 @@ export default function RegisterForNGO() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="address"
+                      required={true}
+                      value={street}
+                      onChange={handleStreet}
                     />
                   </div>
 
@@ -120,6 +210,9 @@ export default function RegisterForNGO() {
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Admin Username"
+                      required={true}
+                      value={adminUsername}
+                      onChange={handleAdminUsername}
                     />
                   </div>
 
@@ -134,6 +227,9 @@ export default function RegisterForNGO() {
                       type="password"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
+                      required={true}
+                      value={password}
+                      onChange={handlePassword}
                     />
                   </div>
 
@@ -148,6 +244,9 @@ export default function RegisterForNGO() {
                       type="tel"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Admin Phone"
+                      required={true}
+                      value={adminPhone}
+                      onChange={handleAdminPhone}
                     />
                   </div>
 
@@ -162,38 +261,19 @@ export default function RegisterForNGO() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Admin Email"
+                      required={true}
+                      value={adminEmail}
+                      onChange={handleAdminEmail}
                     />
                   </div>
 
-                  <div>
-                    <label className="inline-flex items-center cursor-pointer">
-                      <input
-                        id="customCheckLogin"
-                        type="checkbox"
-                        className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                      />
-                      <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                        I agree with the{" "}
-                        <a
-                          href="#pablo"
-                          className="text-lightBlue-500"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          Privacy Policy
-                        </a>
-                      </span>
-                    </label>
-                  </div>
                   <div className="text-center mt-6">
-                    <Link to="/LoginNGO">
-                      <button
-                        className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                        type="button"
-                        onClick={notify}
-                      >
-                        Create Account
-                      </button>
-                    </Link>
+                    <button
+                      className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                      type="submit"
+                    >
+                      Create Account
+                    </button>
                   </div>
                 </form>
               </div>

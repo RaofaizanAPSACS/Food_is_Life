@@ -1,7 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 export default function LoginNGO() {
+  const [adminEmail, setAdminEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleAdminEmail = (event) => {
+    setAdminEmail(event.target.value);
+  };
+  const handlePassword = (event) => {
+    setPassword(event.target.value);
+  };
+  const handleApi = (event) => {
+    // console.log(adminUsername);
+    event.preventDefault();
+    axios
+      .post("http://localhost:8086/NGOLogin", {
+        username: adminEmail,
+        password: password,
+      })
+      .then((result) => {
+        console.log(result.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <main>
@@ -30,18 +55,20 @@ export default function LoginNGO() {
                     <div className="text-blueGray-400 text-center mb-3 font-bold">
                       <small>Sign in with credentials</small>
                     </div>
-                    <form>
+                    <form onSubmit={handleApi}>
                       <div className="relative w-full mb-3">
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                           htmlFor="grid-password"
                         >
-                          Email
+                          Admin Email
                         </label>
                         <input
                           type="email"
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          placeholder="Email"
+                          placeholder="Admin Email"
+                          value={adminEmail}
+                          onChange={handleAdminEmail}
                         />
                       </div>
 
@@ -56,28 +83,21 @@ export default function LoginNGO() {
                           type="password"
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           placeholder="Password"
+                          required={true}
+                          value={password}
+                          onChange={handlePassword}
                         />
-                      </div>
-                      <div>
-                        <label className="inline-flex items-center cursor-pointer">
-                          <input
-                            id="customCheckLogin"
-                            type="checkbox"
-                            className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                          />
-                          <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                            Remember me
-                          </span>
-                        </label>
                       </div>
 
                       <div className="text-center mt-6">
-                        <button
-                          className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                          type="button"
-                        >
-                          LogIn
-                        </button>
+                        <Link to="/auth/dashboard">
+                          <button
+                            className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                            type="submit"
+                          >
+                            LogIn
+                          </button>
+                        </Link>
                       </div>
                     </form>
                   </div>
