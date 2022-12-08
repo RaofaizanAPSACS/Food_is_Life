@@ -71,9 +71,12 @@ export default function RegisterForNGO() {
         if (
           result.data === "Account with NGO Name or Admin Email already exist"
         ) {
-          alert("Account with NGO Name or Admin Email already exist");
+          alert(
+            "Account with NGO Name or Admin Email already exist! Try with different email"
+          );
         } else {
           alert("Registered Successfully");
+          window.location.href = "/LoginNGO";
         }
       })
       .catch((err) => console.log(err));

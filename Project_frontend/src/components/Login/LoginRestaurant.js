@@ -2,6 +2,8 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+axios.defaults.withCredentials = true;
+
 export default function LoginRestaurant() {
   const [adminEmail, setAdminEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +26,7 @@ export default function LoginRestaurant() {
       .then((result) => {
         if (result.data === "Logged In") {
           alert("Log In Successful");
-          <Redirect from="/LoginRestaurant" to="/admin/dashboard" />;
+          window.location.href = "/admin/dashboard";
         } else {
           alert("Wrong Credentials");
         }

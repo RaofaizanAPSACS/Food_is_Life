@@ -87,10 +87,14 @@ export default function RegisterForRestaurant() {
         console.log(result.data);
         if (result.data === "Already have an account. Go for Login!") {
           alert("Already have an account. Go for Login!");
+          window.location.href = "/LoginRestaurant";
         } else if ("Successfully Registered") {
           alert("Successfully Registered");
+          window.location.href = "/LoginRestaurant";
         } else {
-          alert("Account already exists with same Admin Email");
+          alert(
+            "Account already exists with same Admin Email! Try using different Email"
+          );
         }
       })
       .catch((err) => console.log(err));
