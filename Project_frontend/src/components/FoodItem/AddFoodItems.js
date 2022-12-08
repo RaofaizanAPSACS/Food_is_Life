@@ -103,6 +103,7 @@ function AddFoodItems() {
                 label="Food Name"
                 variant="filled"
                 value={inputField.itemName}
+                required={true}
                 onChange={(event) => handleChangeInput(inputField.id, event)}
               />
               <TextField
@@ -110,6 +111,7 @@ function AddFoodItems() {
                 label="Food Description"
                 variant="filled"
                 value={inputField.itemDescription}
+                required={true}
                 onChange={(event) => handleChangeInput(inputField.id, event)}
               />
               <IconButton
