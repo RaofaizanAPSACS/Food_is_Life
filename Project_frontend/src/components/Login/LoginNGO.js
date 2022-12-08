@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 export default function LoginNGO() {
   const [adminEmail, setAdminEmail] = useState("");
@@ -22,7 +23,12 @@ export default function LoginNGO() {
         password: password,
       })
       .then((result) => {
-        console.log(result.data);
+        if (result.data === "Logged In") {
+          alert("Log In Successful");
+          window.location.href = "/auth/dashboard";
+        } else {
+          alert("Wrong Credentials");
+        }
       })
       .catch((err) => console.log(err));
   };

@@ -36,7 +36,17 @@ function AddFoodItems() {
     axios
       .post("http://localhost:8086/addFoodItems", inputFields)
       .then((result) => {
-        console.log(result.data);
+        if (result.data === "Food Items Added") {
+          notify();
+        } else if (result.data === "Session Logged Out") {
+          Invalid();
+        } else if (
+          result.data ===
+          'Cannot read the array length because "cookies" is null'
+        );
+        {
+          access();
+        }
       })
       .catch((err) => console.log(err.response.data.message));
   };
@@ -59,7 +69,14 @@ function AddFoodItems() {
     ]);
   };
   const notify = () => {
-    toast.dark("Submitted");
+    toast.dark("Added Successfully");
+  };
+
+  const Invalid = () => {
+    toast("Session timed out, relogin to add items");
+  };
+  const access = () => {
+    toast("Invalid Access");
   };
 
   const handleRemoveFields = (id) => {
@@ -74,7 +91,7 @@ function AddFoodItems() {
   return (
     <Container>
       <ToastContainer />
-      <div className="text-center pt-20 mt-10">
+      <div className=" pt-20 mt-10">
         <h1 className="font-bold text-4xl text-blue-600 text-center ">
           Add Food Item
         </h1>
@@ -112,7 +129,7 @@ function AddFoodItems() {
             variant="contained"
             color="primary"
             type="submit"
-            onClick={({ handleSubmit }, notify)}
+            onClick={handleSubmit}
           >
             Add to Menu
           </Button>
