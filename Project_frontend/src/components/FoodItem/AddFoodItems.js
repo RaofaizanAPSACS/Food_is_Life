@@ -37,15 +37,15 @@ function AddFoodItems() {
       .post("http://localhost:8086/addFoodItems", inputFields)
       .then((result) => {
         if (result.data === "Food Items Added") {
-          notify();
+          alert("Food Items Added");
         } else if (result.data === "Session Logged Out") {
-          Invalid();
+          alert("Session Logged Out");
         } else if (
           result.data ===
           'Cannot read the array length because "cookies" is null'
         );
         {
-          access();
+          alert('Cannot read the array length because "cookies" is null');
         }
       })
       .catch((err) => console.log(err.response.data.message));

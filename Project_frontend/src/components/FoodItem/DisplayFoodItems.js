@@ -1,9 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "@material-ui/core/Container";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FoodItemCard from "components/Cards/FoodItemCard";
+import axios from "axios";
+axios.defaults.withCredentials = true;
+
 function DisplayFoodItems() {
+  const AllFoodItems = () => {
+    useEffect(() => {}, []);
+  };
+  const getAllFoodItems = () => {
+    axios.get("http://localhost:8086//displayFoodItems").then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
+  useEffect(() => {
+    getAllFoodItems();
+  }, []);
+
   const [foodItems, setFoodItems] = useState([
     {
       id: "1",
@@ -11,35 +31,11 @@ function DisplayFoodItems() {
       storeName: "KFC",
       itemDescription: "Crunchyyyyy",
     },
-    {
-      id: "2",
-      itemName: "Pizza",
-      storeName: "Broadway",
-      itemDescription: "Cheesyy",
-    },
-    {
-      id: "2",
-      itemName: "Pizza",
-      storeName: "Broadway",
-      itemDescription: "Cheesyy",
-    },
-    {
-      id: "2",
-      itemName: "Br",
-      storeName: "Broadway",
-      itemDescription: "Cheesyy",
-    },
-    {
-      id: "2",
-      itemName: "Pizza",
-      storeName: "Broadway",
-      itemDescription: "Cheesyy",
-    },
   ]);
 
-  // const handleFoodItems = (event) => {
-  //   setFoodItems(...foodItems, event.target.value);
-  // };
+  const handleFoodItems = (event) => {
+    setFoodItems(...foodItems, event.target.value);
+  };
 
   return (
     <Container className=" text-right">
