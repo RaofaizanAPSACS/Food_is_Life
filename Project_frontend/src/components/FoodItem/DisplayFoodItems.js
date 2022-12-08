@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import FoodItemCard from "components/Cards/FoodItemCard";
 import axios from "axios";
 axios.defaults.withCredentials = true;
-
+axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
 function DisplayFoodItems() {
   const AllFoodItems = () => {
     useEffect(() => {}, []);
