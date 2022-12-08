@@ -12,6 +12,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.project.fooisLife.entity.FoodItem;
+import com.project.fooisLife.entity.utilClasses.DisplayFoodItemUtil;
+import com.project.fooisLife.mapper.displayFoodItemRowMapper;
 
 @Repository
 public class RestaurantFoodItemRepository {
@@ -52,5 +54,15 @@ public class RestaurantFoodItemRepository {
 		
 		callableStatement.getConnection().close();
 		return true;
+	}
+
+	public List<DisplayFoodItemUtil> displayFoodItemsRepository(String email) {
+		// TODO Auto-generated method stub
+		boolean status = false;
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		return jdbcTemplate.query("call displayFoodItems(?, ?);", new Object[] {email, status}, new displayFoodItemRowMapper());
+		
 	}
 }
