@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.fooisLife.config.CookieSession;
 import com.project.fooisLife.entity.FoodItem;
 import com.project.fooisLife.entity.Login;
+import com.project.fooisLife.entity.utilClasses.DisplayFoodItemUtil;
 import com.project.fooisLife.service.foodItem.RestaurantFoodItemService;
 import com.project.fooisLife.service.login.LoginService;
 
@@ -43,21 +44,18 @@ public class RestaurantFoodItemController {
 				return "Food Items Added";
 		}
 		
-		
-		
-		
 		return "Session Logged Out";
 	}
 	
-//	@GetMapping("/displayFoodItems")
-//	public String displayFoodItems(HttpServletRequest req ) {
-//		CookieSession cookie = new CookieSession();
-//		String email = cookie.getCookieValue(req, "StoreEmail");
-//		String password = cookie.getCookieValue(req, "StorePassword");
-//		
-//		if(loginService.signInStore(new Login(email, password))) {
-//			
-//		}
-//		return "Session Logged Out";
-//	}
+	@GetMapping("/displayFoodItems")
+	public List<DisplayFoodItemUtil> displayFoodItems(HttpServletRequest req ) {
+		CookieSession cookie = new CookieSession();
+		String email = cookie.getCookieValue(req, "StoreEmail");
+		String password = cookie.getCookieValue(req, "StorePassword");
+		
+		if(loginService.signInStore(new Login(email, password))) {
+			return restaurantFoodItemService.displayFoodItemsService(email);
+		}
+		return null;
+	}
 }
