@@ -12,18 +12,18 @@ const FoodItemCard = ({ items }) => {
           <h3>{items.itemName}</h3>
           <div className="info-group">
             <img src={require("../../assets/images/id.jpg").default} alt="2" />
-            <p>{items.id}</p>
+            <p>{items.itemID}</p>
           </div>
           <div className="info-group">
             <img src={require("../../assets/images/res.png").default} alt="2" />
-            <p>{items.storeName}</p>
+            <p>{items.resName}</p>
           </div>
           <div className="info-group">
             <img
               src={require("../../assets/images/description.jpg").default}
               alt="3"
             />
-            <p>{items.itemDescription}</p>
+            <p>{items.itemDesc}</p>
           </div>
         </div>
       </div>

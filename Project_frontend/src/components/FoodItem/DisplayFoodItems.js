@@ -7,13 +7,11 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
 function DisplayFoodItems() {
-  const AllFoodItems = () => {
-    useEffect(() => {}, []);
-  };
   const getAllFoodItems = () => {
-    axios.get("http://localhost:8086//displayFoodItems").then(
+    axios.get("http://localhost:8086/displayFoodItems").then(
       (response) => {
-        console.log(response);
+        console.log(response.data);
+        setFoodItems(response.data);
       },
       (error) => {
         console.log(error);
@@ -24,18 +22,7 @@ function DisplayFoodItems() {
     getAllFoodItems();
   }, []);
 
-  const [foodItems, setFoodItems] = useState([
-    {
-      id: "1",
-      itemName: "Burger",
-      storeName: "KFC",
-      itemDescription: "Crunchyyyyy",
-    },
-  ]);
-
-  const handleFoodItems = (event) => {
-    setFoodItems(...foodItems, event.target.value);
-  };
+  const [foodItems, setFoodItems] = useState([]);
 
   return (
     <Container className=" text-right">

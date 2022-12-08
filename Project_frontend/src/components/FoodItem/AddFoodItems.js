@@ -43,8 +43,7 @@ function AddFoodItems() {
         } else if (
           result.data ===
           'Cannot read the array length because "cookies" is null'
-        );
-        {
+        ) {
           alert('Cannot read the array length because "cookies" is null');
         }
       })
