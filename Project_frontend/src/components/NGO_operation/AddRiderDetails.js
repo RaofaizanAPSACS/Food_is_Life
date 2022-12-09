@@ -94,7 +94,7 @@ function AddRiderDetails() {
       <ToastContainer />
       <div className=" pt-20 mt-10">
         <h1 className="font-bold text-4xl text-blue-600 text-center ">
-          Add Rider Details
+          ADD RIDER DETAILS
         </h1>
         <div>
           <form className={classes.root} onSubmit={handleSubmit}>

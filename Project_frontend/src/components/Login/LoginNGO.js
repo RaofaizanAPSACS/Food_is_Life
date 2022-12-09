@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 axios.defaults.withCredentials = true;
 
 export default function LoginNGO() {
@@ -25,18 +27,26 @@ export default function LoginNGO() {
       .then((result) => {
         if (result.data === "Logged In") {
           alert("Log In Successful");
+          message();
           window.location.href = "/auth/dashboard";
         } else {
           alert("Wrong Credentials");
+          invalid();
         }
       })
       .catch((err) => console.log(err));
   };
-
+  const invalid = () => {
+    toast.warn("Wrong Credentials");
+  };
+  const message = () => {
+    toast.success("Login Successful");
+  };
   return (
     <>
-      <main>
+      <main className="mt-12">
         <section>
+          <ToastContainer />
           <div
             className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
             style={{

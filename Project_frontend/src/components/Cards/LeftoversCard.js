@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Moment from "moment";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const LeftoversCard = ({ items }) => {
   const [quantity, setQuantity] = useState("");
   const [bestBefore, setBestBefore] = useState("");
-  const dateToFormat = "1976-04-19";
-  <Moment>{dateToFormat}</Moment>;
 
   const handleQuantity = (event) => {
     setQuantity(event.target.value);
@@ -24,15 +24,26 @@ const LeftoversCard = ({ items }) => {
       .then((result) => {
         console.log(result.data);
         if (result.data === "Leftovers Added") {
-          alert("Leftovers Added");
+          noftify();
+          alert("Leftover Added");
         } else {
+          sessionOut();
           alert("Session Logged Out");
         }
       })
       .catch((err) => console.log(err));
   };
+
+  const noftify = () => {
+    toast.success("Leftover Added");
+  };
+
+  const sessionOut = () => {
+    toast.warn("Session Timed Out! Login Again");
+  };
   return (
     <div className="cont">
+      <ToastContainer />
       <div className="contacts ">
         <div className="contact-card">
           <img
@@ -85,7 +96,6 @@ const LeftoversCard = ({ items }) => {
               type="date"
               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
               value={bestBefore}
-              pattern={dateToFormat}
               onChange={handleBestBefore}
               required={true}
             />

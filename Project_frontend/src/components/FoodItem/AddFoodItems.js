@@ -38,13 +38,13 @@ function AddFoodItems() {
       .then((result) => {
         if (result.data === "Food Items Added") {
           alert("Food Items Added");
-        } else if (result.data === "Session Logged Out") {
+          notify();
+        } else if (result.data === 500) {
           alert("Session Logged Out");
-        } else if (
-          result.data ===
-          'Cannot read the array length because "cookies" is null'
-        ) {
-          alert('Cannot read the array length because "cookies" is null');
+          sessionOut();
+          window.location.href = "/LoginRestaurant";
+        } else {
+          window.location.href = "/LoginRestaurant";
         }
       })
       .catch((err) => console.log(err.response.data.message));
@@ -68,14 +68,11 @@ function AddFoodItems() {
     ]);
   };
   const notify = () => {
-    toast.dark("Added Successfully");
+    toast.success("Added Successfully");
   };
 
-  const Invalid = () => {
-    toast("Session timed out, relogin to add items");
-  };
-  const access = () => {
-    toast("Invalid Access");
+  const sessionOut = () => {
+    toast.warn("Session Out, Login Again!");
   };
 
   const handleRemoveFields = (id) => {
@@ -88,11 +85,11 @@ function AddFoodItems() {
   };
 
   return (
-    <Container>
+    <Container className="mt-12">
       <ToastContainer />
-      <div className=" pt-20 mt-10">
+      <div className=" pt-20">
         <h1 className="font-bold text-4xl text-blue-600 text-center ">
-          Add Food Item
+          ADD FOOD ITEMS
         </h1>
 
         <form className={classes.root} onSubmit={handleSubmit}>

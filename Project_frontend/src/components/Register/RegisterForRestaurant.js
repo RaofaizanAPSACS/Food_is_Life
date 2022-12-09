@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RegisterForRestaurant() {
   const [branchName, setBranchName] = useState();
@@ -87,22 +89,38 @@ export default function RegisterForRestaurant() {
         console.log(result.data);
         if (result.data === "Already have an account. Go for Login!") {
           alert("Already have an account. Go for Login!");
+          message();
           window.location.href = "/LoginRestaurant";
         } else if ("Successfully Registered") {
           alert("Successfully Registered");
+          success();
           window.location.href = "/LoginRestaurant";
         } else {
           alert(
             "Account already exists with same Admin Email! Try using different Email"
           );
+          invalid();
         }
       })
       .catch((err) => console.log(err));
   };
+  const message = () => {
+    toast("Account Already Exist! Go for Login");
+  };
+  const success = () => {
+    toast.success("Registered Successfully");
+  };
+
+  const invalid = () => {
+    toast.warn(
+      "Account already exists with same Admin Email! Try using different Email"
+    );
+  };
 
   return (
     <>
-      <div className="container mx-auto px-4 h-full">
+      <ToastContainer />
+      <div className="container mx-auto px-4 h-full mt-12">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-6/12 px-4">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">

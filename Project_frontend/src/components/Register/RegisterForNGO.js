@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
@@ -74,17 +75,27 @@ export default function RegisterForNGO() {
           alert(
             "Account with NGO Name or Admin Email already exist! Try with different email"
           );
+          notify();
         } else {
           alert("Registered Successfully");
+          message();
           window.location.href = "/LoginNGO";
         }
       })
       .catch((err) => console.log(err));
   };
 
+  const notify = () => {
+    toast.warning("Account with NGO Name or Admin Email already exist");
+  };
+
+  const message = () => {
+    toast.success("Registered Successfully");
+  };
   return (
     <>
-      <div className="container mx-auto px-4 h-full">
+      <ToastContainer />
+      <div className="container mx-auto px-4 h-full mt-12">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-6/12 px-4">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">

@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 axios.defaults.withCredentials = true;
 
 export default function LoginRestaurant() {
@@ -25,17 +27,28 @@ export default function LoginRestaurant() {
       })
       .then((result) => {
         if (result.data === "Logged In") {
+          message();
           alert("Log In Successful");
           window.location.href = "/admin/dashboard";
         } else {
+          invalid();
           alert("Wrong Credentials");
         }
       })
       .catch((err) => console.log(err));
   };
+
+  const invalid = () => {
+    toast.warn("Wrong Credentials");
+  };
+  const message = () => {
+    toast.success("Login Successful");
+  };
+
   return (
     <>
-      <main>
+      <main className="mt-12">
+        <ToastContainer />
         <section>
           <div
             className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
@@ -94,18 +107,6 @@ export default function LoginRestaurant() {
                           onChange={handlePassword}
                           required={true}
                         />
-                      </div>
-                      <div>
-                        <label className="inline-flex items-center cursor-pointer">
-                          <input
-                            id="customCheckLogin"
-                            type="checkbox"
-                            className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                          />
-                          <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                            Remember me
-                          </span>
-                        </label>
                       </div>
 
                       <div className="text-center mt-6">

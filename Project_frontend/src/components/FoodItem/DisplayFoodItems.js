@@ -25,10 +25,10 @@ function DisplayFoodItems() {
   const [foodItems, setFoodItems] = useState([]);
 
   return (
-    <Container className=" text-right">
+    <Container className=" m-0 text-right">
       <ToastContainer />
       <div className=" pt-20 mt-10">
-        <h1 className="font-bold text-4xl text-center ">Food Item</h1>
+        <h1 className="font-bold text-4xl text-center ">FOOD ITEMS</h1>
         {foodItems.length > 0
           ? foodItems.map((item) => <FoodItemCard items={item} />)
           : "No Food Items"}

@@ -5,6 +5,9 @@ import OrderFoodItems from "components/NGO_operation/OrderFoodItems";
 import AddRiderDetails from "components/NGO_operation/AddRiderDetails";
 import Cart from "components/NGO_operation/Cart";
 import SidenarNGO from "components/Sidebar/SidebarNGO";
+import DisplayRiderDetails from "components/NGO_operation/DisplayRiderDetails";
+import RemoveRiderDetails from "components/NGO_operation/RemoveRiderDetails";
+import UpdateRiderDetails from "components/NGO_operation/UpdateRiderDetails";
 
 export default function Auth() {
   return (
@@ -24,6 +27,22 @@ export default function Auth() {
               component={AddRiderDetails}
             />
             <Route path="/auth/Cart" exact component={Cart} />
+            <Route
+              path="/auth/DisplayRiderDetails"
+              exact
+              component={DisplayRiderDetails}
+            />
+            <Route
+              path="/auth/RemoveRiderDetails"
+              exact
+              component={RemoveRiderDetails}
+            />
+            <Route
+              path="/auth/UpdateRiderDetails"
+              exact
+              component={UpdateRiderDetails}
+            />
+
             <Redirect from="/auth" to="/auth/dashboard" />
           </Switch>
         </div>
