@@ -8,9 +8,9 @@ The world is facing devastating climate changes in the past years which results 
 
 ## SCHEMA:
 
-<img src="Project_Design/schema(10.png"></img>
+<img src="https://github.com/RaofaizanAPSACS/Food_is_Life/blob/main/Project_Design/schema(10.PNG"></img>
 
-<img src="Project_Design/schema(2).png"></img>
+<img src="https://github.com/RaofaizanAPSACS/Food_is_Life/blob/main/Project_Design/schema(2).PNG"></img>
 
 
 ## Website Snapshots:
