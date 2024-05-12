@@ -25,6 +25,7 @@ public class FoodisLifeProjectFolderApplication implements CommandLineRunner{
 		String sqlQuery = "call CreateTables();";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		jdbcTemplate.execute(sqlQuery);
+		System.out.print("Tables Created....");
 	}
 	
 	@Bean
@@ -32,7 +33,7 @@ public class FoodisLifeProjectFolderApplication implements CommandLineRunner{
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:8080");
+				registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:8086");
 				registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:3000");
 
 			}

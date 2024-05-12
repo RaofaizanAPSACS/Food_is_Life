@@ -45,7 +45,7 @@ public class StoreRegisterRepository{
 			
 			boolean val1 = callableStatement.getBoolean(13);
 			boolean val2 = callableStatement.getBoolean(14);
-			
+			System.out.print("DB working....");
 			// close connection
 			callableStatement.getConnection().close();
 			

@@ -3,6 +3,7 @@ package com.project.fooisLife.controller.foodItems;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import com.project.fooisLife.service.login.LoginService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000" ,allowCredentials="true")
 public class RestaurantLeftoverController {
 
 	@Autowired
@@ -27,7 +29,7 @@ public class RestaurantLeftoverController {
 	private boolean helperAddLeftovers(List<Leftover> leftover, String email) {
 		return restaurantLeftoverService.addLeftoversService(leftover, email);
 	}
-	
+//	@CrossOrigin(origins = "http://localhost:3000" )
 	@PostMapping("/addLeftovers")
 	public String addLeftovers(@RequestBody List<Leftover> leftovers, HttpServletRequest req) {
 		CookieSession cookie = new CookieSession();

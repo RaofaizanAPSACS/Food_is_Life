@@ -16,11 +16,11 @@ const LeftoversCard = ({ items }) => {
   const handleLeftoverItem = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:8086/addLeftovers", {
+      .post("http://localhost:8086/addLeftovers", [{
         itemID: items.itemID,
         quantity: quantity,
         bestBefore: bestBefore,
-      })
+      }])
       .then((result) => {
         console.log(result.data);
         if (result.data === "Leftovers Added") {

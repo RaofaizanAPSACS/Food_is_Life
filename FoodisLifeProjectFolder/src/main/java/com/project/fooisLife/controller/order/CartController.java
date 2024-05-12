@@ -3,6 +3,7 @@ package com.project.fooisLife.controller.order;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/NGO/Cart")
+@CrossOrigin(origins = "http://localhost:3000" ,allowCredentials="true")
 public class CartController {
 	
 	@Autowired

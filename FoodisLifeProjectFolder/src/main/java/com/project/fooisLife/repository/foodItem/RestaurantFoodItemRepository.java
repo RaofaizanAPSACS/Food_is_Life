@@ -17,41 +17,42 @@ import com.project.fooisLife.mapper.displayFoodItemRowMapper;
 
 @Repository
 public class RestaurantFoodItemRepository {
-	
+
 	@Autowired
 	private DataSource dataSource;
-	
+
 	CallableStatement callableStatement;
-	
-	
-	// private method to get the next item index of food items of particular branch of restaurant
+
+	// private method to get the next item index of food items of particular branch
+	// of restaurant
 	private int getAddIndex(String email) throws SQLException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call getAddFoodItemNextIndex(?, ?)}");
+		callableStatement = jdbcTemplate.getDataSource().getConnection()
+				.prepareCall("{call getAddFoodItemNextIndex(?, ?)}");
 		callableStatement.setString(1, email);
 		callableStatement.registerOutParameter(2, Types.INTEGER);
 		callableStatement.executeUpdate();
-		int val = callableStatement.getInt(2); 
-		
+		int val = callableStatement.getInt(2);
+
 		callableStatement.getConnection().close();
 		return val;
 	}
-	
+
 	public boolean addRestaurantFoodItemsRepository(List<FoodItem> foodItems, String email) throws SQLException {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		int index = getAddIndex(email);
-		
-		
-		for(FoodItem item : foodItems) {
-			
-			callableStatement = jdbcTemplate.getDataSource().getConnection().prepareCall("{call addStoreFoodItems(?, ?, ?, ?)}");
+
+		for (FoodItem item : foodItems) {
+
+			callableStatement = jdbcTemplate.getDataSource().getConnection()
+					.prepareCall("{call addStoreFoodItems(?, ?, ?, ?)}");
 			callableStatement.setInt(1, ++index);
 			callableStatement.setString(2, item.getItemName());
 			callableStatement.setString(3, item.getItemDescription());
 			callableStatement.setString(4, email);
 			callableStatement.executeUpdate();
 		}
-		
+
 		callableStatement.getConnection().close();
 		return true;
 	}
@@ -59,10 +60,11 @@ public class RestaurantFoodItemRepository {
 	public List<DisplayFoodItemUtil> displayFoodItemsRepository(String email) {
 		// TODO Auto-generated method stub
 		boolean status = false;
-		
+
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		
-		return jdbcTemplate.query("call displayFoodItems(?, ?);", new Object[] {email, status}, new displayFoodItemRowMapper());
-		
+
+		return jdbcTemplate.query("call displayFoodItems(?, ?);", new Object[] { email, status },
+				new displayFoodItemRowMapper());
+
 	}
 }

@@ -4,7 +4,7 @@ const CartCard = ({ items }) => {
   return (
     <div className="cont">
       <div className="contacts ">
-        <div className="contact-card">
+        <div className="contact-card"> 
           <img
             src={require("../../assets/images/cart.png").default}
             alt="1"

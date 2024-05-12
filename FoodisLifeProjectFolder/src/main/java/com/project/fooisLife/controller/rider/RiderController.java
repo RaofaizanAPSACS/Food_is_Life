@@ -3,6 +3,7 @@ package com.project.fooisLife.controller.rider;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/NGO")
+@CrossOrigin(origins = "http://localhost:3000" ,allowCredentials="true")
 public class RiderController {
 
 	@Autowired

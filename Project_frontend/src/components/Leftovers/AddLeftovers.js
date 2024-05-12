@@ -17,7 +17,7 @@ function AddLeftovers() {
       },
       (error) => {
         console.log(error);
-        window.location.href = "/LoginRestaurant";
+        // window.location.href = "/LoginRestaurant";
       }
     );
   };
