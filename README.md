@@ -1,4 +1,4 @@
-# `Food is Life Web Application`
+# `Restaurant Surplus Food Optimization System`
 
 
 ## INTRODUCTION: 
